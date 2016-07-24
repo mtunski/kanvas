@@ -56,6 +56,7 @@ static-html@1.0.12
 templating-tools@1.0.4
 tracker@1.0.15
 ui@1.0.11
+ultimatejs:tracker-react@1.0.5
 underscore@1.0.9
 url@1.0.10
 webapp@1.2.11
