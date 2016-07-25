@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor'
 import TrackerReact from 'meteor/ultimatejs:tracker-react'
 
 import { Canvases } from '/imports/api/canvases/collections'
+import { Stickies } from '/imports/api/stickies/collections'
 import Canvas from '../components/canvas/Canvas'
 
 @TrackerReact
@@ -24,12 +25,25 @@ export default class CanvasContainer extends Component {
   meteorData() {
     return {
       canvas: Canvases.find({}).fetch()[0],
+      stickies: Stickies.find({}).fetch(),
     }
+  }
+
+  handleCreateSticky = (x, y) => {
+    Meteor.call('stickies.create', this.props.canvasId, x, y)
+  }
+
+  handleDeleteSticky = (stickyId) => {
+    Meteor.call('stickies.delete', stickyId)
   }
 
   render() {
     return (
-      <Canvas canvas={this.meteorData()} />
+      <Canvas
+        {...this.meteorData()}
+        onClick={this.handleCreateSticky}
+        onStickyClick={this.handleDeleteSticky}
+      />
     )
   }
 }
