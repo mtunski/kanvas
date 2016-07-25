@@ -16,6 +16,12 @@ Meteor.methods({
       })
     )
   },
+  'stickies.update'(_id, fields) {
+    check(_id, String)
+    check(fields, Object)
+
+    return Stickies.update(_id, { $set: fields })
+  },
   'stickies.delete'(_id) {
     check(_id, String)
 

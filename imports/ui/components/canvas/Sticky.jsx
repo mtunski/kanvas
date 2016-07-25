@@ -1,7 +1,23 @@
 import React, { Component, PropTypes } from 'react'
+import { DragSource } from 'react-dnd'
 
 import '/imports/ui/styles/components/Sticky.scss'
 
+const stickySource = {
+  beginDrag(props) {
+    const { _id, x, y } = props.sticky
+    return { _id, x, y }
+  },
+}
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging(),
+  }
+}
+
+@DragSource('sticky', stickySource, collect)
 export default class Sticky extends Component {
   static propTypes = {
     sticky: PropTypes.shape({
@@ -11,6 +27,8 @@ export default class Sticky extends Component {
       text: React.PropTypes.string,
     }),
     onClick: PropTypes.func.isRequired,
+    connectDragSource: PropTypes.func.isRequired,
+    isDragging: PropTypes.bool.isRequired,
   }
 
   handleClick = (ev) => {
@@ -21,17 +39,22 @@ export default class Sticky extends Component {
   render() {
     const { sticky } = this.props
     const style = {
-      top: sticky.y - 50,
       left: sticky.x - 50,
+      top: sticky.y - 50,
     }
+    const { connectDragSource, isDragging } = this.props
 
-    return (
-      <div
-        className="sticky"
-        onClick={this.handleClick}
-        style={style}
-      >
-      </div>
-    )
+    return isDragging ?
+      null :
+      connectDragSource(
+        <div
+          className="sticky"
+          onClick={this.handleClick}
+          style={style}
+        >
+          x: {sticky.x}
+          y: {sticky.y}
+        </div>
+      )
   }
 }
