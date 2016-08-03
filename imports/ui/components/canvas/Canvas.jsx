@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { map } from 'lodash'
-import HTML5Backend from 'react-dnd-html5-backend'
+import { default as TouchBackend } from 'react-dnd-touch-backend'
 import { DragDropContext, DropTarget } from 'react-dnd'
 
+import CanvasDragLayer from './CanvasDragLayer'
 import Sticky from './Sticky'
 
 import '/imports/ui/styles/components/Canvas.scss'
 
-const canvasTarget = {
+const target = {
   drop(props, monitor, component) {
     const sticky = monitor.getItem();
     const delta = monitor.getDifferenceFromInitialOffset();
@@ -20,15 +21,14 @@ const canvasTarget = {
   },
 }
 
-function collect(connect, monitor) {
+function collect(connect) {
   return {
     connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
   }
 }
 
-@DragDropContext(HTML5Backend)
-@DropTarget('sticky', canvasTarget, collect)
+@DragDropContext(TouchBackend({ enableMouseEvents: true }))
+@DropTarget('sticky', target, collect)
 export default class Canvas extends Component {
   static propTypes = {
     canvas: PropTypes.shape({
@@ -81,6 +81,7 @@ export default class Canvas extends Component {
       >
         Canvas: {canvas.name}
         {this.renderStickies()}
+        <CanvasDragLayer />
       </div>
     )
   }

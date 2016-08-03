@@ -3,7 +3,7 @@ import { DragSource } from 'react-dnd'
 
 import '/imports/ui/styles/components/Sticky.scss'
 
-const stickySource = {
+const source = {
   beginDrag(props) {
     const { _id, x, y } = props.sticky
     return { _id, x, y }
@@ -17,7 +17,7 @@ function collect(connect, monitor) {
   }
 }
 
-@DragSource('sticky', stickySource, collect)
+@DragSource('sticky', source, collect)
 export default class Sticky extends Component {
   static propTypes = {
     sticky: PropTypes.shape({
@@ -26,7 +26,7 @@ export default class Sticky extends Component {
       y: React.PropTypes.number.isRequired,
       text: React.PropTypes.string,
     }),
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
     connectDragSource: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
   }
@@ -48,7 +48,7 @@ export default class Sticky extends Component {
       null :
       connectDragSource(
         <div
-          className="sticky"
+          className="sticky sticky--draggable"
           onClick={this.handleClick}
           style={style}
         >
