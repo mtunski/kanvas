@@ -4,14 +4,15 @@ import { check } from 'meteor/check'
 import { Stickies } from './collections'
 
 Meteor.methods({
-  'stickies.create'(canvasId, x, y) {
+  'stickies.create'(canvasId, x, y, rotation) {
     check(canvasId, String)
     check(x, Number)
     check(y, Number)
+    check(rotation, Number)
 
     return (
       Stickies.insert({
-        canvasId, x, y,
+        canvasId, x, y, rotation,
         createdAt: Date.now(),
       })
     )

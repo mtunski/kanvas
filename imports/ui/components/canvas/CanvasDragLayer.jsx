@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { DragLayer } from 'react-dnd'
 
-import Sticky from './Sticky'
-
 import '/imports/ui/styles/components/CanvasDragLayer.scss'
 import '/imports/ui/styles/components/Sticky.scss'
 

@@ -41,6 +41,7 @@ export default class Sticky extends Component {
     const style = {
       left: sticky.x - 50,
       top: sticky.y - 50,
+      transform: `rotate(${sticky.rotation}deg)`,
     }
     const { connectDragSource, isDragging } = this.props
 

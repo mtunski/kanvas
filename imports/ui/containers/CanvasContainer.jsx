@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Meteor } from 'meteor/meteor'
 import TrackerReact from 'meteor/ultimatejs:tracker-react'
+import { random } from 'lodash'
 
 import { Canvases } from '/imports/api/canvases/collections'
 import { Stickies } from '/imports/api/stickies/collections'
@@ -30,7 +31,7 @@ export default class CanvasContainer extends Component {
   }
 
   handleCreateSticky = (x, y) => {
-    Meteor.call('stickies.create', this.props.canvasId, x, y)
+    Meteor.call('stickies.create', this.props.canvasId, x, y, random(-3, 3))
   }
 
   handleDeleteSticky = (stickyId) => {

@@ -8,18 +8,6 @@
   &--draggable {
     transition: transform .2s ease-in-out;
 
-    &:nth-child(even) {
-      transform: rotate(4deg);
-    }
-
-    &:nth-child(3n) {
-      transform: rotate(-3deg);
-    }
-
-    &:nth-child(5n) {
-      transform: rotate(5deg);
-    }
-
     &:hover {
       background: #ffff99;
       cursor: pointer;
