@@ -1,14 +1,14 @@
-meteor-base
-mongo
-reactive-var
-tracker
+meteor-base@1.0.4
+mongo@1.1.10
+reactive-var@1.0.10
+tracker@1.1.0
 
-standard-minifier-css
-standard-minifier-js
-es5-shim
-ecmascript
+standard-minifier-css@1.1.8
+standard-minifier-js@1.1.8
+es5-shim@4.6.13
+ecmascript@0.5.7
 
-static-html
+static-html@1.1.11
 ultimatejs:tracker-react
 fourseven:scss
 reywood:publish-composite
