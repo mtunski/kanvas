@@ -34,8 +34,8 @@ export default class CanvasContainer extends Component {
     Meteor.call('stickies.create', this.props.canvasId, x, y, random(-3, 3))
   }
 
-  handleDeleteSticky = (stickyId) => {
-    Meteor.call('stickies.delete', stickyId)
+  handleUpdateStickyText = (stickyId, text) => {
+    Meteor.call('stickies.update', stickyId, { text })
   }
 
   handleMoveSticky = (stickyId, x, y) => {
@@ -47,8 +47,8 @@ export default class CanvasContainer extends Component {
       <Canvas
         {...this.meteorData()}
         onClick={this.handleCreateSticky}
-        onStickyClick={this.handleDeleteSticky}
         onStickyMove={this.handleMoveSticky}
+        onStickyTextUpdate={this.handleUpdateStickyText}
       />
     )
   }

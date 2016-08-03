@@ -4,7 +4,7 @@ import { default as TouchBackend } from 'react-dnd-touch-backend'
 import { DragDropContext, DropTarget } from 'react-dnd'
 
 import CanvasDragLayer from './CanvasDragLayer'
-import Sticky from './Sticky'
+import Sticky from './sticky/Sticky'
 
 import '/imports/ui/styles/components/Canvas.scss'
 
@@ -32,13 +32,14 @@ function collect(connect) {
 export default class Canvas extends Component {
   static propTypes = {
     canvas: PropTypes.shape({
-      name: React.PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     }),
     stickies: PropTypes.array.isRequired,
     onClick: PropTypes.func.isRequired,
-    onStickyClick: PropTypes.func.isRequired,
+    // onStickyClick: PropTypes.func.isRequired,
     onStickyMove: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
+    onStickyTextUpdate: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -49,10 +50,6 @@ export default class Canvas extends Component {
 
   handleClick = (ev) => {
     this.props.onClick(ev.clientX, ev.clientY)
-  }
-
-  handleStickyClick = (stickyId) => {
-    this.props.onStickyClick(stickyId)
   }
 
   handleStickyMove = (stickyId, x, y) => {
@@ -66,7 +63,7 @@ export default class Canvas extends Component {
       <Sticky
         key={sticky._id}
         sticky={sticky}
-        onClick={this.handleStickyClick}
+        onStickyTextUpdate={this.props.onStickyTextUpdate}
       />
     )
   }

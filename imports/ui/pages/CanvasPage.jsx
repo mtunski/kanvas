@@ -5,7 +5,7 @@ import CanvasContainer from '../containers/CanvasContainer.jsx'
 export default class CanvasPage extends Component {
   static propTypes = {
     params: PropTypes.shape({
-      canvasId: React.PropTypes.string.isRequired,
+      canvasId: PropTypes.string.isRequired,
     }).isRequired,
   }
 

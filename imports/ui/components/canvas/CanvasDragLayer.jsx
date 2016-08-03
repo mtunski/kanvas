@@ -26,10 +26,10 @@ function getItemStyles(props) {
 export default class CustomDragLayer extends Component {
   static propTypes = {
     sticky: PropTypes.shape({
-      _id: React.PropTypes.string.isRequired,
-      x: React.PropTypes.number.isRequired,
-      y: React.PropTypes.number.isRequired,
-      text: React.PropTypes.string,
+      _id: PropTypes.string.isRequired,
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
     }),
     currentOffset: PropTypes.shape({
       x: PropTypes.number.isRequired,
@@ -40,13 +40,11 @@ export default class CustomDragLayer extends Component {
 
   render() {
     const { sticky, isDragging } = this.props;
-
     return !isDragging ?
       null :
       <div className="canvas-drag-layer">
         <div className="sticky sticky--is-dragged" style={getItemStyles(this.props)}>
-          x: {sticky.x}
-          y: {sticky.y}
+          {sticky.text}
         </div>
       </div>
   }
