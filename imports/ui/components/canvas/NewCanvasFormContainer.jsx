@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { withRouter } from 'react-router'
 
-import NewCanvasForm from '../components/canvas/NewCanvasForm'
+import NewCanvasForm from './NewCanvasForm'
 
 import { createCanvas } from '/imports/api/canvases/methods'
 

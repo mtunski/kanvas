@@ -1,10 +1,10 @@
-import App from '/imports/ui/containers/App'
+import Layout from '/imports/ui/pages/Layout'
 import LandingPage from '/imports/ui/pages/LandingPage'
 import CanvasPage from '/imports/ui/pages/CanvasPage'
 
 export default {
   path: '/',
-  component: App,
+  component: Layout,
   indexRoute: {
     component: LandingPage,
   },

@@ -5,7 +5,7 @@ import { random } from 'lodash'
 
 import { Canvases } from '/imports/api/canvases/collections'
 import { Stickies } from '/imports/api/stickies/collections'
-import Canvas from '../components/canvas/Canvas'
+import Canvas from './Canvas'
 
 import { createSticky, updateSticky } from '/imports/api/stickies/methods'
 
@@ -36,10 +36,6 @@ export default class CanvasContainer extends Component {
     createSticky.call({ canvasId: this.props.canvasId, x, y, rotation: random(-3, 3) })
   }
 
-  handleUpdateStickyText = (stickyId, text) => {
-    updateSticky.call({ _id: stickyId, text })
-  }
-
   handleMoveSticky = (stickyId, x, y) => {
     updateSticky.call({ _id: stickyId, x, y })
   }
@@ -50,7 +46,6 @@ export default class CanvasContainer extends Component {
         {...this.meteorData()}
         onClick={this.handleCreateSticky}
         onStickyMove={this.handleMoveSticky}
-        onStickyTextUpdate={this.handleUpdateStickyText}
       />
     )
   }

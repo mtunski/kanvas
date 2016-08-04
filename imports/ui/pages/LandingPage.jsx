@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import NewCanvasFormContainer from '../containers/NewCanvasFormContainer'
+import NewCanvasFormContainer from '../components/canvas/NewCanvasFormContainer'
 
 export default class LandingPage extends Component {
   render() {

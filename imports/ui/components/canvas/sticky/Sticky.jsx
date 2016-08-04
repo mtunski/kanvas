@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { DragSource } from 'react-dnd'
 
-import ZoomedInSticky from './ZoomedInSticky'
+import ZoomedInStickyContainer from './ZoomedInStickyContainer'
 
 import '/imports/ui/styles/components/Sticky.scss'
 
@@ -30,7 +30,6 @@ export default class Sticky extends Component {
     }),
     connectDragSource: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
-    onStickyTextUpdate: PropTypes.func.isRequired,
   }
 
   state = {
@@ -49,10 +48,9 @@ export default class Sticky extends Component {
   renderZoomedInSticky() {
     return (
       (this.state.zoomedIn || this.props.sticky.text === undefined) ?
-        <ZoomedInSticky
+        <ZoomedInStickyContainer
           sticky={this.props.sticky}
-          onOverlayClick={this.handleZoomOut}
-          onStickyTextUpdate={this.props.onStickyTextUpdate}
+          onZoomOut={this.handleZoomOut}
         /> : null
     )
   }

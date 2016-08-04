@@ -36,10 +36,8 @@ export default class Canvas extends Component {
     }),
     stickies: PropTypes.array.isRequired,
     onClick: PropTypes.func.isRequired,
-    // onStickyClick: PropTypes.func.isRequired,
     onStickyMove: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
-    onStickyTextUpdate: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -63,7 +61,6 @@ export default class Canvas extends Component {
       <Sticky
         key={sticky._id}
         sticky={sticky}
-        onStickyTextUpdate={this.props.onStickyTextUpdate}
       />
     )
   }

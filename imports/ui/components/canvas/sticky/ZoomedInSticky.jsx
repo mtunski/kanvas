@@ -3,8 +3,6 @@ import React, { Component, PropTypes } from 'react'
 import Overlay from '../../Overlay'
 import StickyTextEditor from './StickyTextEditor'
 
-import { deleteSticky } from '/imports/api/stickies/methods'
-
 import '/imports/ui/styles/components/Sticky.scss'
 
 export default class ZoomedInSticky extends Component {
@@ -16,7 +14,7 @@ export default class ZoomedInSticky extends Component {
       text: PropTypes.string,
     }),
     onOverlayClick: PropTypes.func.isRequired,
-    onStickyTextUpdate: PropTypes.func.isRequired,
+    onTextUpdate: PropTypes.func.isRequired,
   }
 
   state = {
@@ -28,21 +26,12 @@ export default class ZoomedInSticky extends Component {
     this.setState({ editing: true })
   }
 
-  handleTextUpdate = (text) => {
-    if (!!text) {
-      this.props.onStickyTextUpdate(this.props.sticky._id, text)
-      this.setState({ editing: false })
-    } else {
-      deleteSticky.call({ _id: this.props.sticky._id })
-    }
-  }
-
   renderContent() {
     return (
       (this.state.editing || this.props.sticky.text === undefined) ?
         <StickyTextEditor
           text={this.props.sticky.text}
-          onStickyTextUpdate={this.handleTextUpdate}
+          onTextUpdate={this.props.onTextUpdate}
         /> : this.props.sticky.text
     )
   }

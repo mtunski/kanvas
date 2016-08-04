@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react'
-import { Meteor } from 'meteor/meteor'
 
 import '/imports/ui/styles/components/Sticky.scss'
 
 export default class StickyTextEditor extends Component {
   static propTypes = {
     text: PropTypes.string,
-    onStickyTextUpdate: PropTypes.func.isRequired,
+    onTextUpdate: PropTypes.func.isRequired,
   }
 
   state = {
@@ -27,7 +26,7 @@ export default class StickyTextEditor extends Component {
   updateStickyText = () => {
     const { text } = this.state
 
-    this.props.onStickyTextUpdate(text && text.trim())
+    this.props.onTextUpdate(text && text.trim())
   }
 
   render() {

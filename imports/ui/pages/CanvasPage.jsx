@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 
-import CanvasContainer from '../containers/CanvasContainer.jsx'
+import CanvasContainer from '../components/canvas/CanvasContainer'
 
 export default class CanvasPage extends Component {
   static propTypes = {
