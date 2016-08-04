@@ -7,6 +7,8 @@ import { Canvases } from '/imports/api/canvases/collections'
 import { Stickies } from '/imports/api/stickies/collections'
 import Canvas from '../components/canvas/Canvas'
 
+import { createSticky, updateSticky } from '/imports/api/stickies/methods'
+
 @TrackerReact
 export default class CanvasContainer extends Component {
   static propTypes = {
@@ -31,15 +33,15 @@ export default class CanvasContainer extends Component {
   }
 
   handleCreateSticky = (x, y) => {
-    Meteor.call('stickies.create', this.props.canvasId, x, y, random(-3, 3))
+    createSticky.call({ canvasId: this.props.canvasId, x, y, rotation: random(-3, 3) })
   }
 
   handleUpdateStickyText = (stickyId, text) => {
-    Meteor.call('stickies.update', stickyId, { text })
+    updateSticky.call({ _id: stickyId, text })
   }
 
   handleMoveSticky = (stickyId, x, y) => {
-    Meteor.call('stickies.update', stickyId, { x, y })
+    updateSticky.call({ _id: stickyId, x, y })
   }
 
   render() {

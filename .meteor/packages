@@ -12,3 +12,6 @@ static-html@1.1.11
 ultimatejs:tracker-react
 fourseven:scss
 reywood:publish-composite
+mdg:validated-method
+aldeed:simple-schema
+aldeed:collection2

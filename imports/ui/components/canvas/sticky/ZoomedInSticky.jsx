@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import { Meteor } from 'meteor/meteor'
 
 import Overlay from '../../Overlay'
 import StickyTextEditor from './StickyTextEditor'
+
+import { deleteSticky } from '/imports/api/stickies/methods'
 
 import '/imports/ui/styles/components/Sticky.scss'
 
@@ -32,7 +33,7 @@ export default class ZoomedInSticky extends Component {
       this.props.onStickyTextUpdate(this.props.sticky._id, text)
       this.setState({ editing: false })
     } else {
-      Meteor.call('stickies.delete', this.props.sticky._id)
+      deleteSticky.call({ _id: this.props.sticky._id })
     }
   }
 

@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import { Meteor } from 'meteor/meteor'
 import { withRouter } from 'react-router'
 
 import NewCanvasForm from '../components/canvas/NewCanvasForm'
+
+import { createCanvas } from '/imports/api/canvases/methods'
 
 @withRouter
 export default class NewCanvasFormContainer extends Component {
@@ -11,7 +12,7 @@ export default class NewCanvasFormContainer extends Component {
   }
 
   handleCreateCanvas = (name) => {
-    Meteor.call('canvases.create', name, (error, canvasId) => {
+    createCanvas.call({ name }, (error, canvasId) => {
       if (!error) {
         this.props.router.push(`canvases/${canvasId}`)
       }

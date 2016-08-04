@@ -1,15 +1,19 @@
-import { Meteor } from 'meteor/meteor'
-import { check } from 'meteor/check'
+import { ValidatedMethod } from 'meteor/mdg:validated-method'
+import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 
 import { Stickies } from './collections'
 
-Meteor.methods({
-  'stickies.create'(canvasId, x, y, rotation) {
-    check(canvasId, String)
-    check(x, Number)
-    check(y, Number)
-    check(rotation, Number)
+const createSticky = new ValidatedMethod({
+  name: 'stickies.create',
 
+  validate: new SimpleSchema({
+    canvasId: { type: String },
+    x: { type: Number },
+    y: { type: Number },
+    rotation: { type: Number, min: -3, max: 3 },
+  }).validator(),
+
+  run({ canvasId, x, y, rotation }) {
     return (
       Stickies.insert({
         canvasId, x, y, rotation,
@@ -17,15 +21,33 @@ Meteor.methods({
       })
     )
   },
-  'stickies.update'(_id, fields) {
-    check(_id, String)
-    check(fields, Object)
+})
 
+const updateSticky = new ValidatedMethod({
+  name: 'stickies.update',
+
+  validate: new SimpleSchema({
+    _id: { type: String },
+    x: { type: Number, optional: true },
+    y: { type: Number, optional: true },
+    text: { type: String, optional: true },
+  }).validator(),
+
+  run({ _id, ...fields }) {
     return Stickies.update(_id, { $set: fields })
   },
-  'stickies.delete'(_id) {
-    check(_id, String)
+})
 
+const deleteSticky = new ValidatedMethod({
+  name: 'stickies.delete',
+
+  validate: new SimpleSchema({
+    _id: { type: String },
+  }).validator(),
+
+  run({ _id }) {
     return Stickies.remove(_id)
   },
 })
+
+export { createSticky, updateSticky, deleteSticky }
