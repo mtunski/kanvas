@@ -28,7 +28,7 @@ export default class ZoomedInSticky extends Component {
 
   renderContent() {
     return (
-      (this.state.editing || this.props.sticky.text === undefined) ?
+      this.state.editing || this.props.sticky.text === undefined ?
         <StickyTextEditor
           text={this.props.sticky.text}
           onTextUpdate={this.props.onTextUpdate}

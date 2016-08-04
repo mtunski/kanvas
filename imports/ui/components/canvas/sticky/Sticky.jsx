@@ -47,7 +47,7 @@ export default class Sticky extends Component {
 
   renderZoomedInSticky() {
     return (
-      (this.state.zoomedIn || this.props.sticky.text === undefined) ?
+      this.state.zoomedIn || this.props.sticky.text === undefined ?
         <ZoomedInStickyContainer
           sticky={this.props.sticky}
           onZoomOut={this.handleZoomOut}
