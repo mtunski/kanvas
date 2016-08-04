@@ -1,5 +1,4 @@
 .sticky {
-  position: absolute;
   width: 100px;
   height: 100px;
   background: #ffc;
@@ -9,26 +8,20 @@
   padding: 3px;
 
   &--draggable {
-    transition: transform .2s ease-in-out;
-
     &:hover {
-      background: #ffff99;
       cursor: pointer;
-      transform: scale(1.1);
-      box-shadow:10px 10px 7px rgba(0,0,0,.7);
-      z-index: 1000
+      box-shadow: 5px 5px 7px rgba(0,0,0,.7);
     }
   }
 
-  &--is-dragged {
-    background: #ffff99;
-    cursor: pointer;
-    box-shadow:10px 10px 7px rgba(0,0,0,.7);
-    z-index: 1000;
+  &--dragged {
+    opacity: .7;
+    transform: rotate(7deg) scale(.9);
   }
 
   &--zoomed-in {
     position: relative;
+    cursor: pointer;
     width: 300px;
     height: 300px;
     padding: 10px;
@@ -37,11 +30,11 @@
     overflow: scroll;
   }
 
-  &__text-editor{
+  &__text-editor {
     position: absolute;
     top: 0;
     left: 0;
-    background: lighten(#ffff99, 15%);
+    background: lighten(#ffc, 5%);
     outline: none;
     border: none;
     resize: none;

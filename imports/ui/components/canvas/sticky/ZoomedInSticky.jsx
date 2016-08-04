@@ -39,7 +39,10 @@ export default class ZoomedInSticky extends Component {
   render() {
     return (
       <Overlay onClick={this.props.onOverlayClick}>
-        <div className="sticky sticky--zoomed-in" onClick={this.handleClick}>
+        <div
+          className="sticky sticky--zoomed-in"
+          onClick={this.handleClick}
+        >
           {this.renderContent()}
         </div>
       </Overlay>

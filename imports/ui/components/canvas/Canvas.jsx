@@ -4,19 +4,19 @@ import { default as TouchBackend } from 'react-dnd-touch-backend'
 import { DragDropContext, DropTarget } from 'react-dnd'
 
 import CanvasDragLayer from './CanvasDragLayer'
-import Sticky from './sticky/Sticky'
+import DraggableSticky from './sticky/DraggableSticky'
 
 import '/imports/ui/styles/components/Canvas.scss'
 
 const target = {
   drop(props, monitor, component) {
-    const sticky = monitor.getItem();
-    const delta = monitor.getDifferenceFromInitialOffset();
+    const delta = monitor.getDifferenceFromInitialOffset()
+    const sticky = monitor.getItem()
 
     component.handleStickyMove(
       sticky._id,
       Math.round(sticky.x + delta.x),
-      Math.round(sticky.y + delta.y)
+      Math.round(sticky.y + delta.y),
     )
   },
 }
@@ -58,7 +58,7 @@ export default class Canvas extends Component {
     const { stickies } = this.props
 
     return map(stickies, (sticky) =>
-      <Sticky
+      <DraggableSticky
         key={sticky._id}
         sticky={sticky}
       />

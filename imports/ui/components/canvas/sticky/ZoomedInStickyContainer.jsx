@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 
-import ZoomedInSticky from '../../../components/canvas/sticky/ZoomedInSticky'
+import ZoomedInSticky from './ZoomedInSticky'
 
 import { updateSticky, deleteSticky } from '/imports/api/stickies/methods'
 

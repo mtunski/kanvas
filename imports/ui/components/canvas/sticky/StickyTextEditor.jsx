@@ -13,7 +13,7 @@ export default class StickyTextEditor extends Component {
   }
 
   handleKeyDown = (ev) => {
-    if (ev.key === 'Enter' && !ev.shiftKey) {
+    if ((ev.key === 'Enter' && !ev.shiftKey) || ev.key === 'Escape') {
       ev.preventDefault()
       this.updateStickyText()
     }
